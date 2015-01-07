@@ -41,3 +41,22 @@ gulp.task('watch', function () {
 })
 
 gulp.task('default', ['scripts', 'styles', 'templates', 'watch'])
+
+
+
+var gulpKarma= require('gulp-karma')
+
+gulp.task('test', function () {
+    gulp.src([
+        'release/components/angular/angular.min.js',
+        'release/components/angular-route/angular-route.min.js',
+        'release/components/angular-mocks/angular-mocks.js',
+        'release/scripts/bApp.min.js',
+        'spec/bApp.js'
+    ])
+        .pipe(gulpKarma({
+            configFile: 'Karmafile.js',
+            action: 'run'
+        }))
+    ;
+})
