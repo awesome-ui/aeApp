@@ -4,7 +4,8 @@
     "repository": "awesome-ui/aeApp",
 
     "scripts": {
-        "start": "gulp"
+        "start": "gulp",
+        "test": "gulp test"
     },
 
     "devDependencies": {
@@ -14,7 +15,15 @@
         "gulp-rename": "latest",
         "gulp-less": "latest",
         "gulp-autoprefixer": "latest",
-        "gulp-jade": "latest"
+        "gulp-jade": "latest",
+
+        "gulp-karma": "latest",
+
+        "karma-mocha": "latest",
+        "karma-chai": "latest",
+        "karma-phantomjs-launcher": "latest",
+        "karma-chrome-launcher": "latest"
+
     },
 
     "license": "LGPL"
