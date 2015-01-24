@@ -2,8 +2,8 @@ angular.module('bApp', ['ngRoute'])
 
     .directive('bApp', bAppDirective)
 
-    .directive('bAppDialog', bAppDialogDirective)
-    .directive('bAppDialogTransclude', bAppDialogTranscludeDirective)
+    .directive('bAppOver', bAppOverDirective)
+    .directive('bAppOverTransclude', bAppOverTranscludeDirective)
 
 ;
 
@@ -12,7 +12,43 @@ angular.module('bApp', ['ngRoute'])
 function bAppDirective($rootScope) {
     return {
         restrict: 'A',
+
+        controllerAs: 'bApp',
         controller: function ($scope) {
+
+
+
+            this.over= null
+
+            this.showOver= function (name) {
+                if (name) {
+                    this.over= name
+                    $scope.$emit('bAppOverShow')
+                }
+            }
+
+            this.hideOver= function () {
+                this.over= null
+                $scope.$emit('bAppOverHide')
+            }
+
+
+
+            var overs= {}
+
+            this.useOver= function (name, over) {
+                if (name && over) {
+                    overs[name]= over
+                } else {
+                    throw new Error
+                }
+            }
+
+            this.getOver= function (name) {
+                return overs[name] || null
+            }
+
+
 
             $rootScope.$on('$routeChangeSuccess', function (evt, route) {
                 $rootScope.route= route
@@ -26,53 +62,37 @@ function bAppDirective($rootScope) {
                 }
             }
 
-            var dialogs= $rootScope.dialogs= {}
-            $rootScope.useDialog= function (name, dialog) {
-                if (name && dialog) {
-                    console.log('useDialog', name, dialog)
-                    dialogs[name]= dialog
-                }
-            }
-            $rootScope.getDialog= function (name) {
-                return dialogs[name] || null
-            }
+        },
 
-            $rootScope.appDialogShow= function (name) {
-                var dialog= $rootScope.getDialog(name)
-                if (dialog) {
-                    dialog.$shown= true
-                }
-            }
-            $rootScope.appDialogHide= function (name) {
-                var dialog= $rootScope.getDialog(name)
-                if (dialog) {
-                    dialog.$shown= false
-                }
-            }
-            $rootScope.appDialogToggle= function (name) {
-                var dialog= $rootScope.getDialog(name)
-                if (dialog) {
-                    if (dialog.$shown) {
-                        $rootScope.appDialogHide(name)
-                    } else {
-                        $rootScope.appDialogShow(name)
-                    }
-                }
-            }
+        link: function ($scope, $e, $a) {
+
+            $scope.$on('bAppOverShow', function () {
+                $e.css('overflowY', 'scroll')
+                $e.css('right', 0)
+                var scrollWidth= $e[0].scrollWidth
+                $e.css('overflowY', 'hidden')
+                $e.css('right', $e[0].scrollWidth - scrollWidth)
+            })
+
+            $scope.$on('bAppOverHide', function () {
+                $e.css('overflowY', 'scroll')
+                $e.css('right', 0)
+            })
 
         }
+
     }
 }
 
 
 
-function bAppDialogDirective($rootScope) {
+function bAppOverDirective($rootScope) {
     return {
         restrict: 'A',
         require: '^bApp',
         transclude: 'element',
         link: function ($scope, $e, $a, bApp, $transclude) {
-            $rootScope.useDialog($a.bAppDialog, {
+            bApp.useOver($a.bAppOver, {
                 $scope: $scope,
                 $e: $e,
                 $transclude: $transclude,
@@ -81,20 +101,19 @@ function bAppDialogDirective($rootScope) {
     }
 }
 
-function bAppDialogTranscludeDirective($rootScope) {
+function bAppOverTranscludeDirective($rootScope) {
     return {
         restrict: 'A',
         require: '^bApp',
         transclude: true,
-        link: function ($scope, $e, $a) {
-            var appDialogTemplate= $rootScope.getDialog($a.bAppDialogTransclude)
-            //var appDialogScope= appDialogTemplate.$scope.$new()
-            var appDialogScope= appDialogTemplate.$scope
-            appDialogScope.AppDialog= $scope.AppDialog
-            if (appDialogTemplate) appDialogTemplate.$transclude(appDialogScope, function ($eTranscluded) {
-                $e.empty()
-                $e.append($eTranscluded)
-            })
+        link: function ($scope, $e, $a, bApp) {
+            var over= bApp.getOver($a.bAppOverTransclude)
+            if (over) {
+                over.$transclude(over.$scope, function ($eTranscluded) {
+                    $e.empty()
+                    $e.append($eTranscluded)
+                })
+            }
         }
     }
 }
