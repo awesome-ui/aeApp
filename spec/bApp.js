@@ -7,45 +7,34 @@ describe('bApp', function() {
         var scope, element
 
         beforeEach(inject(function ($compile, $rootScope) {
-
             scope= $rootScope.$new()
-            scope.getBeginDate= function () {
-                return beginDate
-            }
-            scope.getEndDate= function () {
-                return endDate
-            }
-            scope.getIntervals= function () {
-                return intervals
-            }
             element= angular.element('<div b-app></div>')
             $compile(element)(scope)
             scope.$digest()
-
         }))
 
-        it('expose #isRoute', inject(function ($rootScope) {
-            assert.isFunction($rootScope.isRoute)
+        it('expose #isRoute', inject(function () {
+            assert.isFunction(scope.isRoute)
         }))
 
-        it('expose #useDialog', inject(function ($rootScope) {
-            assert.isFunction($rootScope.useDialog)
+        it('expose bApp', inject(function () {
+            assert.isObject(scope.bApp)
         }))
 
-        it('expose #getDialog', inject(function ($rootScope) {
-            assert.isFunction($rootScope.getDialog)
+        it('expose bApp#useOver', inject(function () {
+            assert.isFunction(scope.bApp.useOver)
         }))
 
-        it('expose #appDialogShow', inject(function ($rootScope) {
-            assert.isFunction($rootScope.appDialogShow)
+        it('expose bApp#getOver', inject(function () {
+            assert.isFunction(scope.bApp.getOver)
         }))
 
-        it('expose #appDialogHide', inject(function ($rootScope) {
-            assert.isFunction($rootScope.appDialogHide)
+        it('expose bApp#showOver', inject(function () {
+            assert.isFunction(scope.bApp.showOver)
         }))
 
-        it('expose #appDialogToggle', inject(function ($rootScope) {
-            assert.isFunction($rootScope.appDialogToggle)
+        it('expose bApp#hideOver', inject(function () {
+            assert.isFunction(scope.bApp.hideOver)
         }))
 
     })
