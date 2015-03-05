@@ -1,0 +1,45 @@
+doctype html
+html(ng-app="example")
+
+    head
+
+        link(rel='stylesheet', href='components/ae/release/styles/index.css')
+        link(rel='stylesheet', href='styles/bApp.css')
+
+        script(src='components/angular/angular.min.js')
+        script(src='components/angular-route/angular-route.min.js')
+        script(src='scripts/bApp.min.js')
+
+        script.
+
+            angular.module('example', ['bApp'])
+
+    body.b-app(b-app)
+
+        .b-app__head
+            .row
+                .col.col-xs-4 head
+                .col.col-xs-4 head
+                .col.col-xs-4 head
+
+        .b-app__body body
+            button(ng-click="bApp.showOver('example')") show over
+
+            .b-app-dialog(b-app-dialog="example")
+
+                .b-app-dialog__head head
+                .b-app-dialog__body body
+
+        .b-app__foot
+            .row
+                .col.col-xs-4 foot
+                .col.col-xs-4 foot
+                .col.col-xs-4 foot
+
+        .b-app__over(ng-if="bApp.over")
+
+            .b-app-over
+                .b-app-over__back(ng-click="bApp.hideOver()")
+                .b-app-over__body(b-app-over-transclude="{{bApp.over}}")
+
+
