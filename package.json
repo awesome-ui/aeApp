@@ -1,14 +1,18 @@
 {
-    "name": "aeApp", "version": "0.3.3",
+    "name": "aeApp", "version": "0.3.5",
 
     "repository": "awesome-ui/aeApp",
 
     "scripts": {
+        "install": "bower install",
         "start": "gulp",
         "test": "gulp test"
     },
 
     "devDependencies": {
+
+        "bower": "latest",
+
         "gulp": "latest",
         "gulp-ng-annotate": "latest",
         "gulp-uglify": "latest",
