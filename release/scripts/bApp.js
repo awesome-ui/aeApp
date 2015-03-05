@@ -65,18 +65,21 @@ function bAppDirective($rootScope) {
         },
 
         link: function ($scope, $e, $a) {
+            var element= $e[0]
 
             $scope.$on('bAppOverShow', function () {
-                $e.css('overflowY', 'scroll')
-                $e.css('right', 0)
-                var scrollWidth= $e[0].scrollWidth
-                $e.css('overflowY', 'hidden')
-                $e.css('right', $e[0].scrollWidth - scrollWidth)
+                var scrollWidth
+                element.style.overflowY= 'scroll'
+                element.style.right= 0
+                scrollWidth= element.scrollWidth
+                element.style.overflowY= 'hidden'
+                scrollWidth= element.scrollWidth - scrollWidth
+                element.style.right= scrollWidth+'px'
             })
 
             $scope.$on('bAppOverHide', function () {
-                $e.css('overflowY', 'scroll')
-                $e.css('right', 0)
+                element.style.overflowY= 'scroll'
+                element.style.right= 0
             })
 
         }

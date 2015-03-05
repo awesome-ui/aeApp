@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="example">
+  <head>
+    <link rel="stylesheet" href="components/ae/release/styles/index.css">
+    <link rel="stylesheet" href="styles/bApp.css">
+    <script src="components/angular/angular.min.js"></script>
+    <script src="components/angular-route/angular-route.min.js"></script>
+    <script src="scripts/bApp.min.js"></script>
+    <script>
+      angular.module('example', ['bApp'])
+      
+    </script>
+  </head>
+  <body b-app class="b-app">
+    <div class="b-app__head">
+      <div class="row">
+        <div class="col col-xs-4">head</div>
+        <div class="col col-xs-4">head</div>
+        <div class="col col-xs-4">head</div>
+      </div>
+    </div>
+    <div class="b-app__body">body
+      <button ng-click="bApp.showOver('example')">show over</button>
+      <div b-app-dialog="example" class="b-app-dialog">
+        <div class="b-app-dialog__head">head</div>
+        <div class="b-app-dialog__body">body</div>
+      </div>
+    </div>
+    <div class="b-app__foot">
+      <div class="row">
+        <div class="col col-xs-4">foot</div>
+        <div class="col col-xs-4">foot</div>
+        <div class="col col-xs-4">foot</div>
+      </div>
+    </div>
+    <div ng-if="bApp.over" class="b-app__over">
+      <div class="b-app-over">
+        <div ng-click="bApp.hideOver()" class="b-app-over__back"></div>
+        <div b-app-over-transclude="{{bApp.over}}" class="b-app-over__body"></div>
+      </div>
+    </div>
+  </body>
+</html>
