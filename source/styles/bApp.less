@@ -6,7 +6,6 @@
 @app__head_height: 5em;
 @app__head_padding: 2em;
 @app__head_line-height: 1em;
-@app__head_background-color: #f2f2f2;
 
 @app__foot_height: 2em;
 @app__foot_padding: 0.5em 2em;
@@ -35,7 +34,6 @@
         width: 100%; height: @app__head_height;
         padding: @app__head_padding;
         line-height: @app__head_line-height;
-        background-color: @app__head_background-color;
     }
 
     &__body {
@@ -46,9 +44,9 @@
     }
 
     &__foot {
-        position: absolute;
+        position: absolute; bottom: 0;
         width: 100%; height: @app__foot_height;
-        margin: 0; margin-top: -@app__foot_height;
+        margin: 0;
         padding: @app__foot_padding;
         line-height: @app__foot_line-height;
     }
