@@ -1,0 +1,35 @@
+doctype html
+html(ng-app="example")
+
+    head
+
+        link(rel='stylesheet', href='components/ae/release/styles/index.css')
+        link(rel='stylesheet', href='styles/index.css')
+
+        script(src='components/angular/angular.min.js')
+        script(src='components/angular-route/angular-route.min.js')
+        script(src='scripts/index.min.js')
+
+        script.
+
+            angular.module('example', ['bApp'])
+
+    body.b-app(b-app)
+
+        .b-app__panes
+
+            .b-app__pane.b-app__pane_menu
+
+                .b-app__head head
+
+                .b-app__body body
+
+                .b-app__foot foot
+
+            .b-app__pane.b-app__pane_main
+
+                .b-app__head head
+
+                .b-app__body body
+
+                .b-app__foot foot
