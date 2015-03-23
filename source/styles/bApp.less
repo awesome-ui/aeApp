@@ -59,6 +59,34 @@
 
 }
 
+@app__pane_menu--width: 300px;
+
+.b-app {
+
+    &__panes {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        min-height: 100%;
+    }
+
+    &__pane {
+        display: block;
+        position: relative;
+
+        &_menu {
+            width: @app__pane_menu--width;
+        }
+
+        &_main {
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 0;
+        }
+    }
+
+}
+
 .b-app-over {
     position: relative;
     margin: 0;
