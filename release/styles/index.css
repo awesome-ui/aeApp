@@ -56,6 +56,38 @@
   height: 100%;
   overflow-y: scroll;
 }
+.b-app__panes {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  min-height: 100%;
+}
+.b-app__pane {
+  display: block;
+  position: relative;
+}
+.b-app__pane_menu {
+  width: 300px;
+}
+.b-app__pane_main {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+          flex-basis: 0;
+}
 .b-app-over {
   position: relative;
   margin: 0;
