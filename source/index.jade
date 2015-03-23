@@ -22,6 +22,12 @@ html(ng-app="example")
                 .col.col-xs-4 head
                 .col.col-xs-4 head
 
+        .b-app__foot
+            .row
+                .col.col-xs-4 foot
+                .col.col-xs-4 foot
+                .col.col-xs-4 foot
+
         .b-app__body body
             button(ng-click="bApp.showOver('example')") show over
 
@@ -30,16 +36,8 @@ html(ng-app="example")
                 .b-app-dialog__head head
                 .b-app-dialog__body body
 
-        .b-app__foot
-            .row
-                .col.col-xs-4 foot
-                .col.col-xs-4 foot
-                .col.col-xs-4 foot
-
         .b-app__over(ng-if="bApp.over")
 
             .b-app-over
                 .b-app-over__back(ng-click="bApp.hideOver()")
                 .b-app-over__body(b-app-over-transclude="{{bApp.over}}")
-
-
