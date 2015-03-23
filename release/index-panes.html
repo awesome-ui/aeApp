@@ -15,13 +15,25 @@
     <div class="b-app__panes">
       <div class="b-app__pane b-app__pane_menu">
         <div class="b-app__head">head</div>
-        <div class="b-app__body">body</div>
         <div class="b-app__foot">foot</div>
+        <div class="b-app__body">body</div>
       </div>
       <div class="b-app__pane b-app__pane_main">
         <div class="b-app__head">head</div>
-        <div class="b-app__body">body</div>
         <div class="b-app__foot">foot</div>
+        <div class="b-app__body">body
+          <button ng-click="bApp.showOver('example')">show over</button>
+          <div b-app-over="example" class="b-app-dialog">
+            <div class="b-app-dialog__head">head</div>
+            <div class="b-app-dialog__body">body</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="bApp.over" class="b-app__over">
+      <div class="b-app-over">
+        <div ng-click="bApp.hideOver()" class="b-app-over__back"></div>
+        <div b-app-over-transclude="{{bApp.over}}" class="b-app-over__body"></div>
       </div>
     </div>
   </body>
